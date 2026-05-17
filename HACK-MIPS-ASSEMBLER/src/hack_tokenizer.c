@@ -3,13 +3,23 @@
 
 static char *trim(char *line)
 {
-     char *placeHolder;
+     char *placeHolder = line;
 
-     while( *line != '\0')
+     while( *placeHolder != '\0')
      {
-        placeHolder = line + 1;
+        placeHolder = placeHolder + 1;
      }
 
-     while()
+     while( (placeHolder - 1) >= line && (*(placeHolder - 1) == ' ' || *(placeHolder - 1) == '\t' ))
+     {
+       placeHolder = placeHolder - 1;
+       *placeHolder = '\0';
+     }
 
+     while( *placeHolder != '\0' && (*placeHolder == ' ' || *placeHolder == '\t' ) )
+     {
+      placeHolder += 1;
+     }
+
+     return placeHolder;
 }
